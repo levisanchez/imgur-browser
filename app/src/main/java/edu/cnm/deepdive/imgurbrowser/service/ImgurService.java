@@ -3,11 +3,11 @@ package edu.cnm.deepdive.imgurbrowser.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.imgurbrowser.BuildConfig;
+
 import edu.cnm.deepdive.imgurbrowser.model.Gallery;
 import io.reactivex.Single;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import okhttp3.logging.HttpLoggingInterceptor.Level;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -18,7 +18,7 @@ import retrofit2.http.Query;
 public interface ImgurService {
 
   @GET("gallery/search")
-  Single<Gallery.Search> getSearchResult(
+  Single<Gallery.SearchResult> getSearchResult(
       @Header("Authorization") String authHeader, @Query("q") String subject);
 
   static ImgurService getInstance() {

@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.cnm.deepdive.imgurbrowser.R;
-import edu.cnm.deepdive.imgurbrowser.model.Gallery.Search;
 import edu.cnm.deepdive.imgurbrowser.view.GalleryListAdapter;
 import edu.cnm.deepdive.imgurbrowser.viewmodel.ListViewModel;
 
@@ -19,7 +17,6 @@ public class GallerySearchFragment extends Fragment {
 
   private RecyclerView galleryArray;
   private ListViewModel viewModel;
-  private GalleryListAdapter galleryListAdapter;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,11 +31,11 @@ public class GallerySearchFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
     viewModel = new ViewModelProvider(getActivity())
         .get(ListViewModel.class);
-    viewModel.getSearchResult().observe(getViewLifecycleOwner(), searchResult -> {
-      if(searchResult != null) {
-        galleryArray.setAdapter(new GalleryListAdapter(getContext(), searchResult.getData()));
+    viewModel.getGalleries().observe(getViewLifecycleOwner(), galleries -> {
+      if (galleries != null) {
+        galleryArray.setAdapter(new GalleryListAdapter(getContext(), galleries));
       }
-
     });
   }
 }
+
