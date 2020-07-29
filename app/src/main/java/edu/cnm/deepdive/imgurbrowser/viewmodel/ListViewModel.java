@@ -42,7 +42,7 @@ public class ListViewModel extends AndroidViewModel implements LifecycleObserver
   public void loadData() {
     pending.add(
         imgurService.getSearchResult(BuildConfig.CLIENT_ID,
-            "Monty Python")
+            "Cars")
             .subscribeOn(Schedulers.io())
             .map((result) -> {
               List<Gallery> galleries = result.getData();
